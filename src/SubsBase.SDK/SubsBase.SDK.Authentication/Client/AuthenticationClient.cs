@@ -1,18 +1,19 @@
-using SubsBase.SDK.Common.Services;
+using SubsBase.SDK.Authentication.Service;
+using SubsBase.SDK.Common;
 
-namespace SubsBase.SDK.Common;
+namespace SubsBase.SDK.Authentication;
 
-public class SubsBaseClient
+public class AuthenticationClient
 {
     private readonly AuthenticationService _authService;
-    private readonly SubsBaseSDKOptions _options;
+    private readonly SubsBaseSdkOptions _options;
     
     private string _token;
     private DateTime _lastTokenRequest;
     
     public Task<string> ServerToken => GetServerToken();
     
-    public SubsBaseClient(AuthenticationService auth, SubsBaseSDKOptions options)
+    public AuthenticationClient(AuthenticationService auth, SubsBaseSdkOptions options)
     {
         _authService = auth;
         _options = options;

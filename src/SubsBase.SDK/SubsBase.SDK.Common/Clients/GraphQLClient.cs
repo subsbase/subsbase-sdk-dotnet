@@ -1,16 +1,15 @@
 using GraphQL;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
-using SubsBase.SDK.Common.Services;
 
-namespace SubsBase.SDK.Common;
+namespace SubsBase.SDK.Common.Clients;
 
 public class GraphQLClient
 {
-    private readonly SubsBaseSDKOptions _options;
+    private readonly SubsBaseSdkOptions _options;
     private GraphQLHttpClient _client;
     
-    public GraphQLClient(SubsBaseSDKOptions options)
+    public GraphQLClient(SubsBaseSdkOptions options)
     {
         _options = options;
     }

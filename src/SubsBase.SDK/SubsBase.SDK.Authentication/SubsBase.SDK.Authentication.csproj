@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SubsBase.SDK.Common\SubsBase.SDK.Common.csproj" />
+      <Folder Include="Contracts\Requests" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Contracts" />
+      <ProjectReference Include="..\SubsBase.SDK.Common\SubsBase.SDK.Common.csproj" />
     </ItemGroup>
 
 </Project>

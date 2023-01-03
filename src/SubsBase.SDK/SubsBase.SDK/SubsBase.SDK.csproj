@@ -7,11 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SubsBase.SDK.Authentication\SubsBase.SDK.Authentication.csproj" />
       <ProjectReference Include="..\SubsBase.SDK.Common\SubsBase.SDK.Common.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Contracts" />
+      <ProjectReference Include="..\SubsBase.SDK.Subscription\SubsBase.SDK.Subscription.csproj" />
     </ItemGroup>
 
 </Project>

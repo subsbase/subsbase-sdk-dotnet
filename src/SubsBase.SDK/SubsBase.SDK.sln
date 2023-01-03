@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK.Subscription",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApi", "SampleApi\SampleApi.csproj", "{6689B60F-1C8E-4B95-A80C-362AB0803347}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK", "SubsBase.SDK\SubsBase.SDK.csproj", "{DD0EC65C-627F-4114-ACBD-5577E819D4EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK.Authentication", "SubsBase.SDK.Authentication\SubsBase.SDK.Authentication.csproj", "{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{6689B60F-1C8E-4B95-A80C-362AB0803347}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6689B60F-1C8E-4B95-A80C-362AB0803347}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6689B60F-1C8E-4B95-A80C-362AB0803347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0EC65C-627F-4114-ACBD-5577E819D4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0EC65C-627F-4114-ACBD-5577E819D4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0EC65C-627F-4114-ACBD-5577E819D4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0EC65C-627F-4114-ACBD-5577E819D4EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

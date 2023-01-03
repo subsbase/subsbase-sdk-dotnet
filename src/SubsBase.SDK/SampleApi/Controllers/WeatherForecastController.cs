@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using SubsBase.SDK.Authentication;
+using SubsBase.SDK.Authentication.Service;
 using SubsBase.SDK.Common;
-using SubsBase.SDK.Common.Services;
+using SubsBase.SDK.Common.Clients;
 
 namespace SampleApi.Controllers;
 
@@ -24,18 +26,18 @@ public class WeatherForecastController : ControllerBase
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
         // how will the user utilize the sdk??
-        SubsBaseClient client = new SubsBaseClient(new AuthenticationService(new GraphQLClient(new SubsBaseSDKOptions()
+        AuthenticationClient client = new AuthenticationClient(new AuthenticationService(new GraphQLClient(new SubsBaseSdkOptions()
         {
             siteId = "test-site",
             apiSecret = "sb_sk_c0650ed23db14d9ba01a765ad56fbcf4"
-        })), new SubsBaseSDKOptions()
+        })), new SubsBaseSdkOptions()
         {
             siteId = "test-site",
             apiSecret = "sb_sk_c0650ed23db14d9ba01a765ad56fbcf4"
         });
 
         var token = await client.ServerToken;
-        var toke = await client.ServerToken;
+        
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

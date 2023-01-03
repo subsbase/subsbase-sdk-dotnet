@@ -1,4 +1,4 @@
-using SubsBase.SDK.Common;
+using SubsBase.SDK;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
-using SubsBase.SDK.Common.Contracts.Responses;
+using SubsBase.SDK.Common.Clients;
 
-namespace SubsBase.SDK.Common.Services;
+namespace SubsBase.SDK.Authentication.Service;
 
 public class AuthenticationService
 {
@@ -14,14 +14,14 @@ public class AuthenticationService
     
     public async Task<string> GenerateToken(string siteId, string apiSecret)
     {
-        string query = Constants.authQuery;
+        string query = Constants.AuthQuery;
         var variables = new
         {
             siteId = siteId,
             apiSecret =apiSecret
         };
         
-        var response = await _graphQLClient.SendAsync(Constants.authEndpoint, query, variables, Constants.authOperationName, string.Empty);
+        var response = await _graphQLClient.SendAsync(Constants.AuthEndpoint, query, variables, Constants.AuthOperationName, string.Empty);
         AuthResponse deserializedResponse = JsonConvert.DeserializeObject<AuthResponse>(response.Data.ToString());
 
         return deserializedResponse.getApiToken.value;
