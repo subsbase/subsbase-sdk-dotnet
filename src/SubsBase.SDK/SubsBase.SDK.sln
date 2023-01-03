@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK", "SubsBase.SD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK.Authentication", "SubsBase.SDK.Authentication\SubsBase.SDK.Authentication.csproj", "{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK.Common.Tests", "SubsBase.SDK.Common.Tests\SubsBase.SDK.Common.Tests.csproj", "{8C713A54-8A7C-43D6-AF1F-4E9D2CAB8871}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C713A54-8A7C-43D6-AF1F-4E9D2CAB8871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C713A54-8A7C-43D6-AF1F-4E9D2CAB8871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C713A54-8A7C-43D6-AF1F-4E9D2CAB8871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C713A54-8A7C-43D6-AF1F-4E9D2CAB8871}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

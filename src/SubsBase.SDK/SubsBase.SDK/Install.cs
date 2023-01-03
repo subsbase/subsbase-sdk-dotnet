@@ -21,6 +21,8 @@ public static class Install
         services.AddTransient<AuthenticationService>();
         services.AddTransient<SubscriptionService>();
         
+        services.AddTransient<SubsBaseClient>();
+        
         return services;
     }
 }
