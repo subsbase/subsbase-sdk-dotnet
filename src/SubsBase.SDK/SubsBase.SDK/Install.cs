@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SubsBase.SDK.Authentication;
+using SubsBase.SDK.Authentication.Client;
 using SubsBase.SDK.Authentication.Service;
 using SubsBase.SDK.Common;
 using SubsBase.SDK.Common.Clients;
@@ -17,7 +18,8 @@ public static class Install
 
         services.AddScoped<AuthenticationClient>();
         services.AddScoped<GraphQLClient>();
-        services.AddSingleton<SubsBaseSdkOptions>();
+        services.AddScoped<SubsBaseClient>();
+        services.AddSingleton<SubsBaseSdkOptions>(options);
         services.AddTransient<AuthenticationService>();
         services.AddTransient<SubscriptionService>();
         

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using SubsBase.SDK.Authentication.Contracts.Responses;
 using SubsBase.SDK.Common.Clients;
 
 namespace SubsBase.SDK.Authentication.Service;
@@ -22,6 +23,7 @@ public class AuthenticationService
         };
         
         var response = await _graphQLClient.SendAsync(Constants.AuthEndpoint, query, variables, Constants.AuthOperationName, string.Empty);
+        
         AuthResponse deserializedResponse = JsonConvert.DeserializeObject<AuthResponse>(response.Data.ToString());
 
         return deserializedResponse.getApiToken.value;

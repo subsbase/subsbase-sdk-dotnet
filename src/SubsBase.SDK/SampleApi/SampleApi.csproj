@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SubsBase.SDK.Common.Tests\SubsBase.SDK.Common.Tests.csproj" />
       <ProjectReference Include="..\SubsBase.SDK.Common\SubsBase.SDK.Common.csproj" />
       <ProjectReference Include="..\SubsBase.SDK.Subscription\SubsBase.SDK.Subscription.csproj" />
       <ProjectReference Include="..\SubsBase.SDK\SubsBase.SDK.csproj" />

@@ -1,4 +1,4 @@
-namespace SubsBase.SDK.Authentication;
+namespace SubsBase.SDK.Authentication.Contracts.Responses;
 
 public class AuthResponse
 {

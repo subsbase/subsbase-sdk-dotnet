@@ -14,7 +14,7 @@ public class GraphQLClient
         _options = options;
     }
 
-    public async Task<dynamic> SendAsync(string endpointUrl, string query, object variables, string operationName, string token)
+    public async Task<dynamic?> SendAsync(string endpointUrl, string query, object variables, string operationName, string token)
     {
         _client = new GraphQLHttpClient(endpointUrl, new NewtonsoftJsonSerializer());
         
@@ -28,8 +28,17 @@ public class GraphQLClient
         };
         
         // is it okay to have a dynamic datatype here???????
-        var response = await _client.SendQueryAsync<dynamic>(request);
-        return response;
+        try
+        {
+            // Use JBOject and then handle deserialization
+            var response = await _client.SendQueryAsync<dynamic>(request);
+            return response;
+        }
+        catch (Exception e)
+        {
+            // log exception
+            return null;
+        }
     }
 
     private void setRequestHeaders(string token)

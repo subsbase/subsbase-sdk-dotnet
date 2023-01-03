@@ -1,7 +1,7 @@
 using SubsBase.SDK.Authentication.Service;
 using SubsBase.SDK.Common;
 
-namespace SubsBase.SDK.Authentication;
+namespace SubsBase.SDK.Authentication.Client;
 
 public class AuthenticationClient
 {
