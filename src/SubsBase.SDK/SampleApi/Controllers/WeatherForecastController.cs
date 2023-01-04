@@ -26,26 +26,28 @@ public class WeatherForecastController : ControllerBase
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
         FieldSelectorBuilderTests test = new FieldSelectorBuilderTests();
-        test.Object_ReturnsFlatSelection();
-        test.SimpleObject_ReturnsFlatSelection();
-        test.ComplexObject_ReturnsFlatSelection();
+        //test.Object_ReturnsFlatSelection();
+        //test.SimpleObject_ReturnsFlatSelection();
+        //test.ComplexObject_ReturnsFlatSelection();
         // all of the intermediates return builders and the executeAsync returns the object
         try
         {
-            var hamada = _client.Query;
-            hamada.Customer("abd").Select(c => new
+            var hamada = await _client.Query.Customer("test-site_16545217270713391881")
+                .Select(c => new
             {
-                c.Name,
+                c.FullName,
                 c.EmailAddress,
-                PaymentMethod= c.PaymentMethod
+                PaymentMethod= c.PaymentMethods
                     .Select( p => new
                     {
                         Id =  p.Id,
                         Type = p.Type
-                    })
+                    }),
+                c.Id,
+                c.CustomerId
             }).ExecuteAsync();
 
-            //var name = hamada.Value.Name;
+            var name = hamada.Value.Customer.FullName;
         }
         catch (Exception e)
         {

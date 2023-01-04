@@ -11,10 +11,10 @@ public class FieldSelectorBuilderTests
     {
         var parsed = FieldSelectorBuilder.Parse((Customer c) => new
         {
-            c.Name
+            c.FullName
         });
         
-        var h = parsed.Should().Be("name");
+        var h = parsed.Should().Be("fullName");
         Console.WriteLine(h);
     }
     
@@ -22,19 +22,19 @@ public class FieldSelectorBuilderTests
     {
         var parsed = FieldSelectorBuilder.Parse((Customer c) => new
         {
-            c.Name,
+            c.FullName,
             c.EmailAddress
         });
 
-        parsed.Should().Be("name,emailAddress");
+        parsed.Should().Be("fullName,emailAddress");
     }
     public void ComplexObject_ReturnsFlatSelection()
     {
         var parsed = FieldSelectorBuilder.Parse( (Customer c) => new
         {
-            c.Name,
+            c.FullName,
             c.EmailAddress,
-            PaymentMethod = c.PaymentMethod
+            PaymentMethod = c.PaymentMethods
                 .Select( p => new
                 {
                     Id =  p.Id,
@@ -43,6 +43,6 @@ public class FieldSelectorBuilderTests
             c.Id
         });
 
-        parsed.Should().Be("name,emailAddress,paymentMethod{id,type},id");
+        parsed.Should().Be("fullName,emailAddress,paymentMethods{id,type},id");
     }
 }

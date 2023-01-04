@@ -4,8 +4,9 @@ public class Result<T>
 {
     public Result(T value)
     {
-        value = value;
+        IsSuccess = true;
+        Value = value;
     }
-    public T? Value { get; }
+    public T? Value { get; set; }
     public bool IsSuccess { get; set; }
 }

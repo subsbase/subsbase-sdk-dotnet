@@ -1,6 +1,7 @@
 using GraphQL;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
+using Newtonsoft.Json.Linq;
 
 namespace SubsBase.SDK.Common.Clients;
 
@@ -14,7 +15,7 @@ public class GraphQLClient
         _options = options;
     }
 
-    public async Task<dynamic?> SendAsync(string endpointUrl, string query, object variables, string operationName, string token)
+    public async Task<GraphQLResponse<JObject>> SendAsync(string endpointUrl, string query, object variables, string operationName, string token)
     {
         _client = new GraphQLHttpClient(endpointUrl, new NewtonsoftJsonSerializer());
         
@@ -31,7 +32,7 @@ public class GraphQLClient
         try
         {
             // Use JBOject and then handle deserialization
-            var response = await _client.SendQueryAsync<dynamic>(request);
+            var response = await _client.SendQueryAsync<JObject>(request);
             return response;
         }
         catch (Exception e)
