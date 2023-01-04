@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using SubsBase.SDK.Common.Contracts;
 
-namespace SubsBase.SDK.Common.Builders.QueryBuilders;
+namespace SubsBase.SDK.Subscription.Builders.QueryBuilders;
 
 public class CustomersQueryBuilder
 {

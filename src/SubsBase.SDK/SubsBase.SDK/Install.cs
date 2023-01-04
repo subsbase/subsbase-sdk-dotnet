@@ -19,6 +19,7 @@ public static class Install
         services.AddScoped<AuthenticationClient>();
         services.AddScoped<GraphQLClient>();
         services.AddScoped<SubsBaseClient>();
+        services.AddScoped<Queries>();
         services.AddSingleton<SubsBaseSdkOptions>(options);
         services.AddTransient<AuthenticationService>();
         services.AddTransient<SubscriptionService>();

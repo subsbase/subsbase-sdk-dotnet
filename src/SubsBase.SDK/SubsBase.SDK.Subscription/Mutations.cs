@@ -1,7 +1,7 @@
-using SubsBase.SDK.Common.Builders.MutationBuilders;
 using SubsBase.SDK.Common.Clients;
+using SubsBase.SDK.Subscription.Builders.MutationBuilders;
 
-namespace SubsBase.SDK;
+namespace SubsBase.SDK.Subscription;
 
 public class Mutations
 {
