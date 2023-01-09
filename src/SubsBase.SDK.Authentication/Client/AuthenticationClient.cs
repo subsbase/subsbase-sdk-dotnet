@@ -13,7 +13,7 @@ public class AuthenticationClient
 
     public Task<string> ServerToken => GetServerTokenAsync();
 
-    public AuthenticationClient(AuthenticationService auth, SubsBaseSdkOptions options)
+    internal AuthenticationClient(AuthenticationService auth, SubsBaseSdkOptions options)
     {
         _authService = auth;
         _options = options;

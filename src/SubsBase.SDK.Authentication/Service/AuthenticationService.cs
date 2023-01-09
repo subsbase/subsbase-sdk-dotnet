@@ -8,7 +8,7 @@ public class AuthenticationService
 {
     private readonly GraphQlClient _graphQlClient;
 
-    public AuthenticationService(GraphQlClient graphQlClient)
+    internal AuthenticationService(GraphQlClient graphQlClient)
     {
         _graphQlClient = graphQlClient;
     }

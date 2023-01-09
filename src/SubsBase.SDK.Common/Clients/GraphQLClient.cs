@@ -11,7 +11,7 @@ public class GraphQlClient
     private readonly SubsBaseSdkOptions _options;
     private GraphQLHttpClient _client;
 
-    public GraphQlClient(SubsBaseSdkOptions options)
+    internal GraphQlClient(SubsBaseSdkOptions options)
     {
         _options = options;
     }

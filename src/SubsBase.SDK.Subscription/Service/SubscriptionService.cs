@@ -12,7 +12,7 @@ public class SubscriptionService
     private readonly SubsBaseSdkOptions _options;
     private readonly AuthenticationClient _authClient;
 
-    public SubscriptionService(GraphQlClient graphQlClient,
+    internal SubscriptionService(GraphQlClient graphQlClient,
         SubsBaseSdkOptions options,
         AuthenticationClient authClient)
     {
