@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using SubsBase.SDK.Common.Contracts;
+using SubsBase.SDK.Subscription.Contracts;
 
 namespace SubsBase.SDK.Subscription.Builders.QueryBuilders;
 
@@ -15,7 +15,7 @@ public class CustomersQueryBuilder
         //save filter for execution step
         return this;
     }
-    
+
     public CustomersQueryBuilder SortBy(object filter)
     {
         //save filter for execution step

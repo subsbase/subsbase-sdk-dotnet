@@ -10,9 +10,7 @@ public class SubsBaseClient
         Mutate = mutate;
     }
 
-    public Queries Query { get; set; }
+    public Queries Query { get; }
 
-    public Mutations Mutate { get; set; }
+    public Mutations Mutate { get; }
 }
-
-

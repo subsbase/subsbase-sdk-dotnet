@@ -14,14 +14,4 @@
         <ProjectReference Include="..\SubsBase.SDK.Subscription\SubsBase.SDK.Subscription.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="GraphQL.Client" Version="5.1.0"/>
-        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="5.1.0"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
-        <PackageReference Include="NuGet.CommandLine" Version="6.3.1">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-
 </Project>

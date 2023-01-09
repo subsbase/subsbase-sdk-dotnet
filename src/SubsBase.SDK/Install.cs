@@ -11,10 +11,9 @@ public static class Install
     public static IServiceCollection AddSubsBaseSdk(this IServiceCollection services,
         Action<SubsBaseSdkOptions> sdkOptions)
     {
-        services.AddAuthenticationSdk();
         services.AddCommonSdk(sdkOptions);
+        services.AddAuthenticationSdk();
         services.AddSubscriptionSdk();
-        
         services.AddScoped<SubsBaseClient>();
 
         return services;

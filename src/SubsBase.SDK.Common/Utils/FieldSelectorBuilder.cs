@@ -31,10 +31,10 @@ public static class FieldSelectorBuilder
             else
             {
                 var callExp = field as MethodCallExpression;
-                var fieldName = GetFieldName(callExp!.Object!);
-                var subArgs = callExp!.Arguments.First();
-                var unaryExp = ((subArgs as UnaryExpression)!).Operand;
-                var lambdaExp = ((unaryExp as LambdaExpression)!).Body;
+                var fieldName = GetFieldName(callExp.Object);
+                var subArgs = callExp.Arguments.First();
+                var unaryExp = (subArgs as UnaryExpression).Operand;
+                var lambdaExp = (unaryExp as LambdaExpression).Body;
 
                 AppendSelectedField(fieldName, ref selectedFields);
 
@@ -52,7 +52,7 @@ public static class FieldSelectorBuilder
     private static string GetFieldName(Expression expression)
     {
         var fieldName = (expression as MemberExpression)?.Member.Name;
-        return fieldName != null ? char.ToLower(fieldName[0]) + fieldName.Substring(1) : string.Empty;
+        return fieldName != null ? char.ToLower(fieldName[0]) + fieldName[1..] : string.Empty;
     }
 
     private static void AppendSelectedField(string fieldName, ref string selectedFields)

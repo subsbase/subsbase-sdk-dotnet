@@ -10,25 +10,29 @@ public class GraphQlClient
 {
     private readonly SubsBaseSdkOptions _options;
     private GraphQLHttpClient _client;
-    
+
     public GraphQlClient(SubsBaseSdkOptions options)
     {
         _options = options;
     }
 
-    public async Task<GraphQLResponse<JObject>> SendAsync(string endpointUrl, string query, object variables, string operationName, string token)
+    public async Task<GraphQLResponse<JObject>?> SendAsync(string endpointUrl,
+        string query,
+        object variables,
+        string operationName,
+        string token)
     {
         _client = new GraphQLHttpClient(endpointUrl, new NewtonsoftJsonSerializer());
-        
+
         SetRequestHeaders(token);
-        
+
         var request = new GraphQLRequest()
         {
             Query = query,
             Variables = variables,
             OperationName = operationName
         };
-        
+
         try
         {
             var response = await _client.SendQueryAsync<JObject>(request);
@@ -36,7 +40,6 @@ public class GraphQlClient
         }
         catch (Exception e)
         {
-            // log exception
             return null;
         }
     }

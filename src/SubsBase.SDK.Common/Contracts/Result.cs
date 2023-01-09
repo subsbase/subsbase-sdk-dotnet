@@ -7,7 +7,8 @@ public class Result<T>
         IsSuccess = value != null;
         Value = value;
     }
-    public T? Value { get; set; }
-    
-    public bool IsSuccess { get; set; }
+
+    public T? Value { get; }
+
+    public bool IsSuccess { get; }
 }

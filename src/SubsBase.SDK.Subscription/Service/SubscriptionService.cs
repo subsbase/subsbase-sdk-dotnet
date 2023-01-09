@@ -21,7 +21,7 @@ public class SubscriptionService
         _authClient = authClient;
     }
 
-    public async Task<CustomerResponse> GetCustomerInfoHelperAsync(string customerId, string selectedFields)
+    public async Task<CustomerResponse?> GetCustomerInfoHelperAsync(string customerId, string selectedFields)
     {
         var token = await _authClient.ServerToken;
         string query = string.Format(Constants.CustomerQuery, selectedFields);

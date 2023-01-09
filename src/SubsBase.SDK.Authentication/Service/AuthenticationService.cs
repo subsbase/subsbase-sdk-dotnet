@@ -12,23 +12,23 @@ public class AuthenticationService
     {
         _graphQlClient = graphQlClient;
     }
-    
+
     public async Task<string> GenerateTokenAsync(string siteId, string apiSecret)
     {
         var variables = new
         {
             siteId = siteId,
-            apiSecret =apiSecret
+            apiSecret = apiSecret
         };
-        
-        var response = await _graphQlClient.SendAsync(Constants.AuthEndpoint, Constants.AuthQuery, variables, Constants.AuthOperationName, string.Empty);
+
+        var response = await _graphQlClient.SendAsync(Constants.AuthEndpoint, Constants.AuthQuery, variables,
+            Constants.AuthOperationName, string.Empty);
 
         if (response == null)
         {
-            // log token retrieval error
             return string.Empty;
         }
-        
+
         var deserializedResponse = JsonConvert.DeserializeObject<AuthResponse>(response.Data.ToString());
         return deserializedResponse?.GetApiToken.Value;
     }
