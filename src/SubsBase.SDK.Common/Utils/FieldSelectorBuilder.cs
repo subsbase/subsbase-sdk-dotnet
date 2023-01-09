@@ -1,5 +1,4 @@
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace SubsBase.SDK.Common.Utils;
 
@@ -12,7 +11,7 @@ public static class FieldSelectorBuilder
 
         return selectedFields;
     }
-    
+
     private static void ParseHelper(Expression? expression, ref string selectedFields)
     {
         var arguments = (expression as NewExpression)?.Arguments;
@@ -21,7 +20,7 @@ public static class FieldSelectorBuilder
         {
             return;
         }
-        
+
         foreach (var field in arguments)
         {
             if (field.NodeType == ExpressionType.MemberAccess)
@@ -53,7 +52,7 @@ public static class FieldSelectorBuilder
     private static string GetFieldName(Expression expression)
     {
         var fieldName = (expression as MemberExpression)?.Member.Name;
-        return fieldName != null ? char.ToLower(fieldName[0]) + fieldName[1..] : string.Empty;
+        return fieldName != null ? char.ToLower(fieldName[0]) + fieldName.Substring(1) : string.Empty;
     }
 
     private static void AppendSelectedField(string fieldName, ref string selectedFields)
@@ -63,13 +62,13 @@ public static class FieldSelectorBuilder
             selectedFields = fieldName;
             return;
         }
-        
-        if (selectedFields.EndsWith('{'))
+
+        if (selectedFields.EndsWith("{"))
         {
             selectedFields += fieldName;
             return;
         }
 
-        selectedFields = string.Join(',', selectedFields, fieldName);
+        selectedFields = string.Join(",", selectedFields, fieldName);
     }
 }

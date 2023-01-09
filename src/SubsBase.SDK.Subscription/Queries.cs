@@ -1,20 +1,19 @@
-using SubsBase.SDK.Authentication.Client;
-using SubsBase.SDK.Common.Clients;
-using SubsBase.SDK.Common.Contracts;
 using SubsBase.SDK.Subscription.Builders.QueryBuilders;
-using SubsBase.SDK.Subscription.Service;
+using SubsBase.SDK.Subscription.Client;
 
 namespace SubsBase.SDK.Subscription;
 
 public class Queries
 {
-    private readonly SubscriptionService _subscriptionService;
+    private readonly SubscriptionClient _subscriptionClient;
 
-    public Queries(SubscriptionService subscriptionService)
+    public Queries(SubscriptionClient subscriptionClient)
     {
-        _subscriptionService = subscriptionService;
+        _subscriptionClient = subscriptionClient;
     }
 
-    public CustomerQueryBuilder Customer(string customerId) => new CustomerQueryBuilder(_subscriptionService, customerId);
+    public CustomerQueryBuilder Customer(string customerId) =>
+        new CustomerQueryBuilder(_subscriptionClient, customerId);
+
     public CustomersQueryBuilder Customers() => new CustomersQueryBuilder();
 }

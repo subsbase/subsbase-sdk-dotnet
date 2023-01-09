@@ -1,4 +1,4 @@
-using SubsBase.SDK.Authentication.Client;
+using SubsBase.SDK.Subscription.Contracts;
 using SubsBase.SDK.Subscription.Service;
 
 namespace SubsBase.SDK.Subscription.Client;
@@ -6,25 +6,16 @@ namespace SubsBase.SDK.Subscription.Client;
 public class SubscriptionClient
 {
     private readonly SubscriptionService _subscriptionService;
-    private readonly AuthenticationClient _authenticationClient;
-    
-    private string _token;
-    
-    public Task<string> PauseSubscription => PauseSubscriptionHelper();
 
-    public SubscriptionClient(SubscriptionService subscriptionService, AuthenticationClient authenticationClient)
+    public SubscriptionClient(SubscriptionService subscriptionService)
     {
         _subscriptionService = subscriptionService;
-        _authenticationClient = authenticationClient;
     }
-    
-    private async Task<string> PauseSubscriptionHelper()
+
+    public async Task<CustomerResponse> GetCustomerInfoAsync(string customerId, string selectedFields)
     {
-        _token = await _authenticationClient.ServerToken;
-        
-        if(_token != String.Empty)
-        // to be implemented
-        await Task.Delay(1);
-        return String.Empty;
+        var response = await _subscriptionService.GetCustomerInfoHelperAsync(customerId, selectedFields);
+
+        return response;
     }
 }

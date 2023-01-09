@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using SubsBase.SDK.Authentication.Client;
 using SubsBase.SDK.Authentication.Service;
 
@@ -11,7 +10,7 @@ public static class Install
     {
         services.AddScoped<AuthenticationClient>();
         services.AddTransient<AuthenticationService>();
-        
+
         return services;
     }
 }
