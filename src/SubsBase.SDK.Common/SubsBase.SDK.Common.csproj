@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net462;net5.0;net6.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>10</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GraphQL.Client" Version="5.1.0"/>
+        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="5.1.0"/>
+        <PackageReference Include="IndexRange" Version="1.0.2"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+    </ItemGroup>
+
+</Project>
