@@ -1,11 +1,16 @@
+using System.Text.Json.Serialization;
+
 namespace SubsBase.SDK.Balance.Contracts;
 
-public class BalanceHold
+public class HoldAmountNew
 {
-    public Guid Id { get; set; }
-    public decimal Amount { get; set; }
-    public DateTime? Expiry { get; set; }
-    
-    public Guid BalanceId { get; set; }
-    public BalanceInfo? BalanceInfo { get; set; }
+    [JsonPropertyName("balanceId")] public Guid BalanceId { get; set; }
+    [JsonPropertyName("amount")] public decimal Amount { get; set; }
+    [JsonPropertyName("description")] public string Description { get; set; } = string.Empty;
+    [JsonPropertyName("expirationDate")] public DateTime? ExpirationDate { get; set; }
+}
+
+public class HoldAmountResponse
+{
+    [JsonPropertyName("onHoldAmountId")] public string OnHoldAmountId { get; set; }
 }
