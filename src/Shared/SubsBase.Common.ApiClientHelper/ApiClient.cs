@@ -7,9 +7,9 @@ public partial class ApiClient
 {
     private readonly HttpClient _httpClient;
     
-    public ApiClient(IHttpClientFactory httpClientFactory, string baseAddress)
+    public ApiClient(HttpClient httpClient, string baseAddress)
     {
-        _httpClient = httpClientFactory.CreateClient();
+        _httpClient = httpClient;
         _httpClient.BaseAddress = new Uri(baseAddress);
     }
     
