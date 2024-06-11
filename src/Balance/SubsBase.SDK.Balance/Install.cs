@@ -5,10 +5,13 @@ namespace SubsBase.SDK.Balance;
 
 public static class Install
 {
-    public static IServiceCollection AddBalanceServices(this IServiceCollection services)
+
+    public static IServiceCollection AddBalanceSdk(this IServiceCollection services)
     {
         services.AddTransient<BalanceClient>();
-    
+        services.AddTransient<BalanceMovementClient>();
+        services.AddTransient<OnHoldAmountClient>();
+        
         return services;
     }
 }
