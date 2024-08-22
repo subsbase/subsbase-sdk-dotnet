@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Shared\SubsBase.Common.ApiClientHelper\SubsBase.Common.ApiClientHelper.csproj" />
       <ProjectReference Include="..\SubsBase.SDK.Balance\SubsBase.SDK.Balance.csproj" />
     </ItemGroup>
 
