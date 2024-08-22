@@ -19,6 +19,25 @@ public class OnHoldAmountClient
         _balanceConfiguration = balanceConfiguration;
     }
     
+    public async Task<Result<OnHoldAmount?>> GetAsync(string onHoldAmountId)
+    {
+        var signaturePayload = new Dictionary<string, string>()
+        {
+            { "id", onHoldAmountId}
+        };
+
+        return await _apiClient.GetAsync<OnHoldAmount>(
+            uri: @$"{onHoldAmountId}",
+            headers: new Dictionary<string, string>()
+            {
+                { "publicKey", _balanceConfiguration.PublicKey },
+                {
+                    "signature", _signingService.SignPayload(JsonSerializer.Serialize(signaturePayload),
+                        _balanceConfiguration.PrivateKey)
+                },
+            }); 
+    }
+    
     public async Task<Result<HoldAmountResponse?>> CreateAsync(HoldAmountNew holdAmountNew)
     {
         var signaturePayload = new SortedDictionary<string, object>()
@@ -26,7 +45,7 @@ public class OnHoldAmountClient
             { "balanceId", holdAmountNew.BalanceId },
             { "amount", holdAmountNew.Amount },
             { "description", holdAmountNew.Description },
-            { "expirationDate", holdAmountNew.ExpirationDate }
+            { "releaseDate", holdAmountNew.ReleaseDate }
         };
 
         var result = await _apiClient.PostAsync<HoldAmountNew, HoldAmountResponse>(
@@ -57,5 +76,25 @@ public class OnHoldAmountClient
             });
         return result;
     }
+    
+    public async Task<Result<OnHoldAmountDetails?>> GetBalanceOnHoldAmountsAsync(Guid balanceId)
+    {
+        var signaturePayload = new Dictionary<string, string>()
+        {
+            { "balanceId", balanceId.ToString()}
+        };
+
+        return await _apiClient.GetAsync<OnHoldAmountDetails>(
+            uri: @$"?balanceId={balanceId}",
+            headers: new Dictionary<string, string>()
+            {
+                { "publicKey", _balanceConfiguration.PublicKey },
+                {
+                    "signature", _signingService.SignPayload(JsonSerializer.Serialize(signaturePayload),
+                        _balanceConfiguration.PrivateKey)
+                },
+            }); 
+    }
+
 
 }

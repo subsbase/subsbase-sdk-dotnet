@@ -30,7 +30,7 @@ public class BalanceMovementClient
         };
         
         var result = await _apiClient.PostAsync<BalanceMovementNew, BalanceSummary>(
-            uri: "balance-movement",
+            uri: "",
             headers: new Dictionary<string, string>()
             {
                 {"publicKey", _balanceConfiguration.PublicKey},

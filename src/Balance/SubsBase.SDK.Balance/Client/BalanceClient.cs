@@ -27,9 +27,25 @@ public class BalanceClient
             { "unit", balanceInfoNew.Unit},
         };
 
-        var result = await _apiClient.PostAsync<BalanceInfoNew, BalanceSummary >(
+        return await _apiClient.PostAsync<BalanceInfoNew, BalanceSummary >(
             uri: "",
             request: balanceInfoNew,
+            headers: new Dictionary<string, string>()
+            {
+                { "publicKey", _balanceConfiguration.PublicKey },
+                { "signature", _signingService.SignPayload(JsonSerializer.Serialize(signaturePayload), _balanceConfiguration.PrivateKey)}
+            });
+    }
+
+    public async Task<Result<List<BalanceSummary>>> GetAllAsync(IEnumerable<string> ids)
+    {
+        var signaturePayload = new Dictionary<string, string>()
+        {
+            { "ids",string.Join(',',ids)}
+        };
+
+        return await _apiClient.GetAsync<List<BalanceSummary>>(
+            uri: $"?ids={string.Join(',', ids)}",
             headers: new Dictionary<string, string>()
             {
                 { "publicKey", _balanceConfiguration.PublicKey },
@@ -38,19 +54,17 @@ public class BalanceClient
                         _balanceConfiguration.PrivateKey)
                 },
             });
-
-        return result;
     }
-
-    public async Task<Result<BalanceInfo?>> GetAsync(Guid id)
+    
+    public async Task<Result<BalanceDetails?>> GetAsync(Guid id)
     {
         var signaturePayload = new Dictionary<string, string>()
         {
             { "id", id.ToString()}
         };
 
-        var result = await _apiClient.GetAsync<BalanceInfo>(
-            uri: $"{id}",
+        return await _apiClient.GetAsync<BalanceDetails>(
+            uri: @$"{id}",
             headers: new Dictionary<string, string>()
             {
                 { "publicKey", _balanceConfiguration.PublicKey },
@@ -59,11 +73,9 @@ public class BalanceClient
                         _balanceConfiguration.PrivateKey)
                 },
             }); 
-
-        return result;
     }
 
-    public async Task<Result<BalanceInfo?>> UpdateAsync(Guid id, BalanceInfoUpdate balanceInfoToUpdate)
+    public async Task<Result<BalanceSummary?>> UpdateAsync(Guid id, BalanceInfoUpdate balanceInfoToUpdate)
     {
         var signaturePayload = new Dictionary<string, object>()
         {
@@ -71,7 +83,7 @@ public class BalanceClient
             { "metadata", JsonSerializer.Serialize(balanceInfoToUpdate.Metadata) }
         };
 
-        var result = await _apiClient.PutAsync<BalanceInfoUpdate, BalanceInfo>(
+        return await _apiClient.PutAsync<BalanceInfoUpdate, BalanceSummary>(
             uri: $"{id}",
             request: balanceInfoToUpdate,
             headers: new Dictionary<string, string>()
@@ -82,7 +94,5 @@ public class BalanceClient
                         _balanceConfiguration.PrivateKey)
                 },
             });
-
-        return result;
     }
 }
