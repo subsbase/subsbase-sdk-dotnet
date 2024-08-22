@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="GetHttpMethod.cs">
+        <DependentUpon>ApiClient.cs</DependentUpon>
+      </Compile>
+      <Compile Update="DeleteHttpMethod.cs">
+        <DependentUpon>ApiClient.cs</DependentUpon>
+      </Compile>
+      <Compile Update="PostHttpMethod.cs">
+        <DependentUpon>ApiClient.cs</DependentUpon>
+      </Compile>
+      <Compile Update="PutHttpMethod.cs">
+        <DependentUpon>ApiClient.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

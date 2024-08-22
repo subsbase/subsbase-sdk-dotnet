@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>SubsBase.SDK.Balance.csproj</id>
+    <version>1.5.1</version>
+    <authors>Subsbase</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <description>Package description</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <dependencies>
+      <group targetFramework="net8.0"/>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,48 @@
+name: "Deploy to NuGet"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_PATH: "src/Balance/SubsBase.SDK.Balance.csproj"
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
+  NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
+  
+jobs:
+  deploy:
+    name: 'Deploy'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: 'Install dotnet'
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.x'
+
+      - name: 'Restore packages'
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: 'Build project'
+        run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+
+      - name: 'Get version'
+        uses: kzrnm/get-net-sdk-project-versions-action@v1.3.0
+        id: get-version
+        with:
+          proj-path: ${{ env.PROJECT_PATH }}
+
+      - name: 'Get package name'
+        id: get-package-name
+        run: echo "::set-output name=package-name::SubsBaseBalance.${{ steps.get-version.outputs.version }}" 
+
+      - name: 'Pack project'
+        run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.get-version.outputs.version }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+
+      - name: 'Push package'
+        run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/${{ steps.get-package-name.outputs.package-name }}.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SOURCE_URL }}
+    

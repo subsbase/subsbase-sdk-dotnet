@@ -8,6 +8,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK", "SubsBase.SD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK.Authentication", "SubsBase.SDK.Authentication\SubsBase.SDK.Authentication.csproj", "{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9D4D7C57-3397-45AE-AB3B-566FA31DC7BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.Common.ApiClientHelper", "Shared\SubsBase.Common.ApiClientHelper\SubsBase.Common.ApiClientHelper.csproj", "{C2C2B932-89CE-4D7F-9F34-AD2DCDD7ABFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Balance", "Balance", "{F8A7443A-C083-4C7C-A1AE-EF4572F36FFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK.Balance.Test", "Balance\SubsBase.SDK.Balance.Test\SubsBase.SDK.Balance.Test.csproj", "{4EB52FBE-B014-4475-876C-CEF550FDF6A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsBase.SDK.Balance", "Balance\SubsBase.SDK.Balance\SubsBase.SDK.Balance.csproj", "{F808184E-AA25-4FF4-B703-FB2F19172468}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +40,22 @@ Global
 		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40599CF0-FFB2-4F95-B67F-CBA1955CDBBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2C2B932-89CE-4D7F-9F34-AD2DCDD7ABFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2C2B932-89CE-4D7F-9F34-AD2DCDD7ABFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2C2B932-89CE-4D7F-9F34-AD2DCDD7ABFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2C2B932-89CE-4D7F-9F34-AD2DCDD7ABFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB52FBE-B014-4475-876C-CEF550FDF6A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB52FBE-B014-4475-876C-CEF550FDF6A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB52FBE-B014-4475-876C-CEF550FDF6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB52FBE-B014-4475-876C-CEF550FDF6A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F808184E-AA25-4FF4-B703-FB2F19172468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F808184E-AA25-4FF4-B703-FB2F19172468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F808184E-AA25-4FF4-B703-FB2F19172468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F808184E-AA25-4FF4-B703-FB2F19172468}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2C2B932-89CE-4D7F-9F34-AD2DCDD7ABFB} = {9D4D7C57-3397-45AE-AB3B-566FA31DC7BF}
+		{4EB52FBE-B014-4475-876C-CEF550FDF6A2} = {F8A7443A-C083-4C7C-A1AE-EF4572F36FFA}
+		{F808184E-AA25-4FF4-B703-FB2F19172468} = {F8A7443A-C083-4C7C-A1AE-EF4572F36FFA}
 	EndGlobalSection
 EndGlobal
