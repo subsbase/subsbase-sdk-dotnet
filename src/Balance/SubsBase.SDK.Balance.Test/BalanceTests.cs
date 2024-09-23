@@ -9,8 +9,8 @@ namespace SubsBase.SDK.Balance.Test;
 [SingleThreaded]
 public class BalanceTests
 {
-    private static readonly string _publicKey = "F68B22FC-E444-4296-B415-D22434DD8061";
-    private static readonly string _privateKey = "nDCH601zDitO6gNRnDXhYLu0NN99CJbg";
+    private static readonly string _publicKey = "publicKey";
+    private static readonly string _privateKey = "privateKey";
     private static Guid _1StBalanceId;
     private static Guid _2NdBalanceId;
     private static string _releasedAmountId;
@@ -20,7 +20,7 @@ public class BalanceTests
     [OneTimeSetUp]
     public void OneTimeInit()
     {
-        balanceSdk = new BalanceSdk(_publicKey, _privateKey, environment: Environment.Development, "http://localhost:5199");
+        balanceSdk = new BalanceSdk(_publicKey, _privateKey, environment: Environment.Development);
     }
 
     [Test, Order(1)]
