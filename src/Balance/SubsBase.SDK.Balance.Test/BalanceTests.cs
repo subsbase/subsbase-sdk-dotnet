@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Subsbase.Balance.Inputs;
 using SubsBase.SDK.Balance.Contracts;
 
 namespace SubsBase.SDK.Balance.Test;
@@ -68,14 +69,16 @@ public class BalanceTests
             BalanceId = _1StBalanceId,
             Type = MovementType.Credit,
             Amount = 1000,
-            Description = "Load Balance With 1000 EGP",
+            Description = "Load Balance With 1000 EGP - settle invoice",
         }).GetAwaiter().GetResult();
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(1000.0M);
-        balance.Value.TotalAmount.Should().Be(1000.0M);
-        balance.Value.OnHoldAmount.Should().Be(0.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(0.0M);
+
     }
     
     [Test, Order(4)]
@@ -120,9 +123,10 @@ public class BalanceTests
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(1000.0M);
-        balance.Value.TotalAmount.Should().Be(1000.0M);
-        balance.Value.OnHoldAmount.Should().Be(0.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(0.0M);
     }
     
     
@@ -156,9 +160,11 @@ public class BalanceTests
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(500.0M);
-        balance.Value!.TotalAmount.Should().Be(500.0M);
-        balance.Value!.OnHoldAmount.Should().Be(0.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(500.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(500.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(0.0M);
+
     }
     
     [Test, Order(9)]
@@ -270,9 +276,11 @@ public class BalanceTests
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(1100.0M);
-        balance.Value!.TotalAmount.Should().Be(1300.0M);
-        balance.Value!.OnHoldAmount.Should().Be(200.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(1100.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(1300.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(200.0M);
+
         
     }
     
@@ -311,5 +319,23 @@ public class BalanceTests
         balance.Value.BalanceId.Should().Be(_1StBalanceId);
         balance.Value.OnHoldAmounts.Sum(x => x.Amount).Should().Be(200);
     }
+    
+    [Test, Order(18)]
+    public void Step_18_GetAllBalanceMovements_ShouldGetAlBalanceMovements()
+    {
+        var balance = balanceSdk.BalanceMovement.GetAsync(
+            balanceId: _1StBalanceId,
+            filter: new FilterInput(){ SearchTerm = "invoice"},
+            sorting: new SortingInput{ SortBy = "amount" , SortDirection = SortingDirection.Descending},
+            pagination: new PaginationInput {PageNumber = 1, PageSize = 100}
+            ).GetAwaiter().GetResult();
+        balance.Should().NotBeNull();
+        balance.IsSuccess.Should().BeTrue();
+        balance.Value.Should().NotBeNull();
+
+        balance.Value.TotalRecords.Should();
+        balance.Value.Data.FirstOrDefault().NetBalance.Should().BePositive();
+    }
+
     
 }

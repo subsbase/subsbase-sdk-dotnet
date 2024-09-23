@@ -64,7 +64,6 @@ public class OnHoldAmountClient
         var signaturePayload = new SortedDictionary<string,object>()
         {
             {"onHoldAmountId", onHoldAmountId},
-            {"isCaptured", isCaptured.ToString()}
         };
         
         var result = await _apiClient.DeleteAsync<BalanceSummary>(
