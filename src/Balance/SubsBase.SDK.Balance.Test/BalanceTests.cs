@@ -9,8 +9,8 @@ namespace SubsBase.SDK.Balance.Test;
 [SingleThreaded]
 public class BalanceTests
 {
-    private static readonly string _publicKey = "publicKey";
-    private static readonly string _privateKey = "privateKey";
+    private static readonly string _publicKey = "F68B22FC-E444-4296-B415-D22434DD8061";
+    private static readonly string _privateKey = "nDCH601zDitO6gNRnDXhYLu0NN99CJbg";
     private static Guid _1StBalanceId;
     private static Guid _2NdBalanceId;
     private static string _releasedAmountId;
@@ -20,7 +20,7 @@ public class BalanceTests
     [OneTimeSetUp]
     public void OneTimeInit()
     {
-        balanceSdk = new BalanceSdk(_publicKey, _privateKey, environment: Environment.Development);
+        balanceSdk = new BalanceSdk(_publicKey, _privateKey, environment: Environment.Development, "http://localhost:5199");
     }
 
     [Test, Order(1)]
@@ -74,9 +74,11 @@ public class BalanceTests
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(1000.0M);
-        balance.Value.TotalAmount.Should().Be(1000.0M);
-        balance.Value.OnHoldAmount.Should().Be(0.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(0.0M);
+
     }
     
     [Test, Order(4)]
@@ -121,9 +123,10 @@ public class BalanceTests
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(1000.0M);
-        balance.Value.TotalAmount.Should().Be(1000.0M);
-        balance.Value.OnHoldAmount.Should().Be(0.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(1000.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(0.0M);
     }
     
     
@@ -157,9 +160,11 @@ public class BalanceTests
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(500.0M);
-        balance.Value!.TotalAmount.Should().Be(500.0M);
-        balance.Value!.OnHoldAmount.Should().Be(0.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(500.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(500.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(0.0M);
+
     }
     
     [Test, Order(9)]
@@ -271,9 +276,11 @@ public class BalanceTests
     
         balance.IsSuccess.Should().BeTrue();
         balance.Value.Should().NotBeNull();
-        balance.Value!.AvailableAmount.Should().Be(1100.0M);
-        balance.Value!.TotalAmount.Should().Be(1300.0M);
-        balance.Value!.OnHoldAmount.Should().Be(200.0M);
+        balance.Value!.BalanceMovementId.Should().NotBeNullOrEmpty();
+        balance.Value.BalanceSummary.AvailableAmount.Should().Be(1100.0M);
+        balance.Value.BalanceSummary.TotalAmount.Should().Be(1300.0M);
+        balance.Value.BalanceSummary.OnHoldAmount.Should().Be(200.0M);
+
         
     }
     

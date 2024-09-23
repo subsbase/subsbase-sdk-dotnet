@@ -19,7 +19,7 @@ public class BalanceMovementClient
         _balanceConfiguration = balanceConfiguration;
     }
     
-    public async Task<Result<BalanceSummary?>> CreateAsync(BalanceMovementNew balanceMovementNew)
+    public async Task<Result<NewBalanceMovementResponse?>> CreateAsync(BalanceMovementNew balanceMovementNew)
     {
         var signaturePayload = new SortedDictionary<string, object>()
         {
@@ -30,7 +30,7 @@ public class BalanceMovementClient
             { "type", balanceMovementNew.Type.ToString() }
         };
         
-        var result = await _apiClient.PostAsync<BalanceMovementNew, BalanceSummary>(
+        var result = await _apiClient.PostAsync<BalanceMovementNew, NewBalanceMovementResponse>(
             uri: "",
             headers: new Dictionary<string, string>()
             {

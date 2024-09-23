@@ -16,3 +16,9 @@ public class BalanceMovementNew
     [JsonPropertyName("expirationDate") ] public DateTime? ExpirationDate { get; set; }
     [JsonPropertyName("description")] public string Description { get; set; } = string.Empty;
 }
+
+public class NewBalanceMovementResponse
+{
+    [JsonPropertyName("balanceSummary")] public BalanceSummary BalanceSummary { get; set; }
+    [JsonPropertyName("balanceMovementId")] public string BalanceMovementId { get; set; } = string.Empty;
+}
