@@ -27,6 +27,7 @@ public class BalanceMovementClient
             { "balanceId", balanceMovementNew.BalanceId.ToString() },
             { "description", balanceMovementNew.Description },
             { "expirationDate", balanceMovementNew.ExpirationDate ?? null},
+            { "utcTimestamp", balanceMovementNew.UtcTimestamp ?? null},
             { "type", balanceMovementNew.Type.ToString() }
         };
         

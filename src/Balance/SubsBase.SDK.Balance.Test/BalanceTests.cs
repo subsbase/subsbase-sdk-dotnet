@@ -336,6 +336,36 @@ public class BalanceTests
         balance.Value.TotalRecords.Should();
         balance.Value.Data.FirstOrDefault().NetBalance.Should().BePositive();
     }
-
     
+    [Test, Order(19)]
+    public void Step_19_AddBalanceMovementWithInvalidTimestamp_ShouldNotAddMovement()
+    {
+        var balance = balanceSdk.BalanceMovement.CreateAsync(new BalanceMovementNew()
+        {
+            BalanceId = _1StBalanceId,
+            Type = MovementType.Credit,
+            Amount = 1000,
+            Description = "Load Balance With timestamp - 1000 EGP",
+            UtcTimestamp = DateTime.UtcNow.AddDays(-1)
+        }).GetAwaiter().GetResult();
+    
+        balance.IsFailed.Should().BeTrue();
+        balance.Value.Should().BeNull();
+    }
+    
+    [Test, Order(20)]
+    public void Step_20_AddBalanceMovementWithFutureTimestamp_ShouldNotAddMovement()
+    {
+        var balance = balanceSdk.BalanceMovement.CreateAsync(new BalanceMovementNew()
+        {
+            BalanceId = _1StBalanceId,
+            Type = MovementType.Credit,
+            Amount = 1000,
+            Description = "Load Balance With timestamp - 1000 EGP",
+            UtcTimestamp = DateTime.UtcNow.AddDays(1)
+        }).GetAwaiter().GetResult();
+    
+        balance.IsFailed.Should().BeTrue();
+        balance.Value.Should().BeNull();
+    }
 }
