@@ -1,4 +1,3 @@
-
 using SubsBase.Common.ApiClientHelper;
 using SubsBase.SDK.Balance.Client;
 
@@ -17,13 +16,11 @@ public class BalanceSdk
     )
     {
         _configuration =  new BalanceConfiguration(publicKey, privateKey);
-        _configurationConstants = environment == Environment.Development
-            ? new DevelopmentConstants(environmentBaseUrl)
-            : new ProductionConstants();
+        _configurationConstants = new ConfigurationConstants(environment, environmentBaseUrl);
     }
 
-    public BalanceClient Balance => new BalanceClient(new ApiClient(new HttpClient(), _configurationConstants.BalanceUri), _configuration);
-    public BalanceMovementClient BalanceMovement => new BalanceMovementClient(new ApiClient(new HttpClient(), _configurationConstants.BalanceMovementUri), _configuration);
-    public OnHoldAmountClient OnHoldAmount => new OnHoldAmountClient(new ApiClient(new HttpClient(), _configurationConstants.OnHoldAmountUri), _configuration);
+    public BalanceClient Balance => new (new ApiClient(new HttpClient(), _configurationConstants.BalanceUri), _configuration);
+    public BalanceMovementClient BalanceMovement => new (new ApiClient(new HttpClient(), _configurationConstants.BalanceMovementUri), _configuration);
+    public OnHoldAmountClient OnHoldAmount => new (new ApiClient(new HttpClient(), _configurationConstants.OnHoldAmountUri), _configuration);
 
 }
