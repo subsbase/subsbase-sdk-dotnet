@@ -9,7 +9,6 @@ public class BalanceInfoNew
     [JsonPropertyName("unit")] public string Unit { get; set; } = string.Empty;
 }
 
-
 public class BalanceInfoUpdate
 {
     [JsonPropertyName("metadata")] public Dictionary<string, object>? Metadata { get; set; }
